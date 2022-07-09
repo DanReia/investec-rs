@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use investec::config::{read_path,create_if_not_exist};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -34,7 +35,9 @@ fn main() {
 
     match &cli.command {
         FirstSubcommand::Init {} => {
-            todo!("Initialize .investecrc");
+            // todo!("Initialize .investecrc");
+            let home = read_path();
+            create_if_not_exist(home);
         }
         FirstSubcommand::Login {} => {
             todo!("Log in");
