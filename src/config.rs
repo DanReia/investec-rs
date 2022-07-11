@@ -6,7 +6,14 @@ pub struct InvestecConfig {
     token: String,
 }
 
+/// Function to read the INVESTEC_PATH environment variable for the default home path and
+/// return a PathBuf of the location of the .investecrc configuration file.
+/// 
+/// # Panics
+///
+/// Panics if INVESTEC_PATH is not set
 pub fn read_path() -> PathBuf {
+
     let path = match std::env::var("INVESTEC_PATH") {
         Ok(x) => x,
         Err(_) => panic!("INVESTEC_PATH not set"),
